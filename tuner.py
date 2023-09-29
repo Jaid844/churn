@@ -20,7 +20,7 @@ class model_finder:
             'penalty': ['l1', 'l2'],            # Regularization type
             'C': [0.001, 0.01, 0.1, 1, 10]     # Inverse of regularization strength
         }
-              self.grid=GridSearchCV(estimator= self.logictic,param_grid=self.param_grid,cv=5,verbose=3)
+              self.grid=GridSearchCV(estimator= self.logictic,param_grid=self.param_grid,cv=7,verbose=3)
               self.grid.fit(train_X,train_Y)
 
               self.penalty=self.grid.best_params_['penalty']
@@ -38,8 +38,9 @@ class model_finder:
           try:
 
               self.param_grid={'criterion':['gini', 'entropy', 'log_loss'],
-                               'splitter':['best', 'random']}
-              self.grid=GridSearchCV(estimator=self.DT,param_grid=self.param_grid,cv=5,verbose=3)
+                               'splitter':['best', 'random'],
+                               'max_features':[ 'auto', 'sqrt', 'log2']}
+              self.grid=GridSearchCV(estimator=self.DT,param_grid=self.param_grid,cv=7,verbose=3)
               self.grid.fit(train_x, train_y)
               self.citreion=self.grid.best_params_['criterion']
               self.splitter=self.grid.best_params_['splitter']
@@ -54,7 +55,8 @@ class model_finder:
               param_grid = {
                   'n_neighbors': [3, 5, 7],  # You can adjust the values
                   'weights': ['uniform', 'distance'],
-                  'metric': ['euclidean', 'manhattan']
+                  'metric': ['euclidean', 'manhattan'],
+                  'algorithm':['auto', 'ball_tree', 'kd_tree', 'brute']
               }
 
               # Create a grid search object
