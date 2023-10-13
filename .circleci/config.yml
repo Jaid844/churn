@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: python:3.x  # Replace with your desired Python version
+      - image: python:3.8  # Replace with your desired Python version
 
     steps:
       - checkout  # Check out your code repository
