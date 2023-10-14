@@ -1,13 +1,14 @@
-
+import unittest
 from file_operation import file_op
 import numpy as np
 import pandas as pd
 
-class TestMLModel():
+class TestMLModel(unittest.TestCase):
 
-    def __init__(self):
-        self.f=file_op()
 
+    def __init__(self, methodName='runTest'):
+        super(TestMLModel, self).__init__(methodName)
+        self.f = file_op()
     def setUp(self):
         # Initialize the ML model or load it
         model =self.f.load_model('Knn1')
@@ -26,3 +27,5 @@ class TestMLModel():
 
 
 
+if __name__ == '__main__':
+    unittest.main()
