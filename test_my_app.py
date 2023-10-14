@@ -1,9 +1,9 @@
-import unittest
+
 from file_operation import file_op
 import numpy as np
 import pandas as pd
 
-class TestMLModel(unittest.TestCase):
+class TestMLModel():
 
     def __init__(self):
         self.f=file_op()
@@ -26,5 +26,3 @@ class TestMLModel(unittest.TestCase):
 
 
 
-if __name__ == '__main__':
-    unittest.main()
