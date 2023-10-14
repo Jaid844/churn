@@ -1,16 +1,30 @@
-# test_my_app.py
+import unittest
+from file_operation import file_op
+import numpy as np
+import pandas as pd
 
-def add(a, b):
-    return a + b
+class TestMLModel(unittest.TestCase):
 
-def test_add_positive_numbers():
-    result = add(3, 5)
-    assert result == 8
+    def __init__(self):
+        self.f=file_op()
 
-def test_add_negative_numbers():
-    result = add(-2, -4)
-    assert result == -6
+    def setUp(self):
+        # Initialize the ML model or load it
+        model =self.f.load_model('Knn1')
+        return model
 
-def test_add_mixed_numbers():
-    result = add(5, -3)
-    assert result == 2
+    def test_prediction(self):
+        # Test a specific prediction using your ML model
+        input_features = [0,1,0,0,1,0,0,63,0.6511,0.41061,0.2942]
+        df = pd.DataFrame.from_dict(input_features)
+        df = df.to_numpy()
+        reshaped_data = df.reshape(1, -1)
+        model=self.setUp()
+        predicted_class =model.predict(reshaped_data)
+        expected_class = 0
+        self.assertEqual(predicted_class, expected_class, "Prediction should match the expected class.")
+
+
+
+if __name__ == '__main__':
+    unittest.main()
